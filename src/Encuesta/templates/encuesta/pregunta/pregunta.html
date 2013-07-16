@@ -2,5 +2,10 @@
 {block body}
 <p>Pregunta:</p>
 <p>{$texto}</p>
+<form action="." method="POST">
+<table>
 {$form.render_table}
+</table>
+<input type="submit" value="Siguiente" />
+</form>
 {/block}

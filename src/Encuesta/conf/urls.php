@@ -34,10 +34,24 @@ $ctl[] = array (
 );
 
 $ctl[] = array (
+	'regex' => '#^/cuestionarios/(\d+)/$#',
+	'base' => $base,
+	'model' => 'Encuesta_Views_Cuestionario',
+	'method' => 'iniciar',
+);
+
+$ctl[] = array (
 	'regex' => '#^/cuestionarios/(\d+)/(\d+)/$#',
 	'base' => $base,
 	'model' => 'Encuesta_Views_Pregunta',
 	'method' => 'verPregunta',
+);
+
+$ctl[] = array (
+	'regex' => '#^/cuestionarios/(\d+)/final/$#',
+	'base' => $base,
+	'model' => 'Encuesta_Views_Cuestionario',
+	'method' => 'fin',
 );
 
 return $ctl;

@@ -4,7 +4,7 @@
 <p>Seleccione un cuestionario para resolver:
 <ul>
 {foreach $cuestionarios as $cu}
-<li><a href=".">{$cu.nombre}</a></li>
+<li><a href="{url 'Encuesta_Views_Cuestionario::iniciar', array ($cu.id)}">{$cu.nombre}</a></li>
 {/foreach}
 </ul>
 {else}

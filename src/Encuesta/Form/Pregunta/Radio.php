@@ -2,20 +2,18 @@
 
 class Encuesta_Form_Pregunta_Radio extends Gatuf_Form {
 	public $pregunta;
-	public $opciones;
 	
 	public function initFields($extra=array()) {
 		$this->pregunta = $extra['pregunta'];
 		$sql = new Gatuf_SQL ('pregunta=%s', $this->pregunta->id);
-		$this->opciones = Gatuf::factory ('Encuesta_Opcion')->getList (array ('filter' => $sql->gen ()));
+		$local_opciones = Gatuf::factory ('Encuesta_Opcion')->getList (array ('filter' => $sql->gen ()));
 		
-		if (count ($this->opciones) == 0) {
+		if (count ($local_opciones) == 0) {
 			throw new Exception ('Pregunta de opciones sin opciones');
 		}
 		
 		$choices = array ();
-		
-		foreach ($this->opciones as $opc) {
+		foreach ($local_opciones as $opc) {
 			$choices [$opc->texto] = $opc->id;
 		}
 		
@@ -31,7 +29,7 @@ class Encuesta_Form_Pregunta_Radio extends Gatuf_Form {
 		));
 	}
 	
-	public function save ($commit) {
+	public function save ($commit=true) {
 		if (!$this->isValid ()) {
 			throw new Exception ('Cannot save the model from and invalid form.');
 		}
@@ -39,8 +37,11 @@ class Encuesta_Form_Pregunta_Radio extends Gatuf_Form {
 		$respuesta = new Encuesta_Respuesta ();
 		
 		$respuesta->pregunta = $this->pregunta->id;
+		$respuesta->cuestionario = $this->pregunta->cuestionario;
 		
-		$respuesta->data['value'] = $this->opciones [$this->cleaned_data['pregunta']]->texto;
+		$opcion = new Encuesta_Opcion ();
+		$opcion->getOpcion ($this->cleaned_data['pregunta']);
+		$respuesta->data['value'] = $opcion->texto;
 		return $respuesta;
 	}
 }

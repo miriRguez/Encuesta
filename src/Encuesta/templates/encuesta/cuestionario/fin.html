@@ -1,0 +1,6 @@
+{extends 'encuesta/base.html'}
+{block body}
+<h2>Gracias</h2>
+<p>Este cuestionario ha finalizado. Puede <a href="{url 'Encuesta_Views_Cuestionario::index'}" >regresar a llenar otra encuesta</a></p>
+<p>Ha completado '{$cuestionario->nombre}'</p>
+{/block}
