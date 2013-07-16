@@ -48,7 +48,7 @@ class Encuesta_Views_Pregunta {
 		
 		return Gatuf_Shortcuts_RenderToResponse ('encuesta/pregunta/pregunta.html',
 		                                         array ('page_title' => 'Pregunta',
-		                                                'texto' => $esta_pregunta->nombre,
+		                                                'pregunta' => $esta_pregunta,
 		                                                'form' => $form),
 		                                         $request);
 	}

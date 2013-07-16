@@ -1,11 +1,25 @@
 {extends 'encuesta/base.html'}
 {block body}
 <p>Pregunta:</p>
-<p>{$texto}</p>
-<form action="." method="POST">
+<p>{$pregunta.nombre}</p>
+<form name="form_pregunta" action="." method="POST">
 <table>
 {$form.render_table}
 </table>
 <input type="submit" value="Siguiente" />
 </form>
+{/block}
+{block javascript}
+{if $pregunta.timeout != 0}
+<script type="text/javascript">
+	// <![CDATA[
+		var auto_refresh = setInterval (
+			function () {literal}
+			{
+				document.form_pregunta.submit ();
+			},{/literal} {$pregunta.timeout} * 1000
+		);
+	// ]]>
+</script>
+{/if}
 {/block}
