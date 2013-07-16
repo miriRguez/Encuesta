@@ -1,0 +1,13 @@
+{extends 'encuesta/base.html'}
+{block body}
+{if $cuestionarios}
+<p>Seleccione un cuestionario para resolver:
+<ul>
+{foreach $cuestionarios as $cu}
+<li><a href=".">{$cu.nombre}</a></li>
+{/foreach}
+</ul>
+{else}
+<p>Por el momento no hay cuestionarios que resolver</p>
+{/if}
+{/block}

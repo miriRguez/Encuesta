@@ -107,6 +107,7 @@ $cfg['bounce_email'] = 'encuesta@cucei.udg.mx';
 
 $cfg['middleware_classes'] = array(
 	'Gatuf_Middleware_Session',
+	'Encuesta_Middleware',
 );
 
 $cfg['gatuf_custom_user'] = 'Encuesta_User';
