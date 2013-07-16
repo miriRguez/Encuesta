@@ -40,7 +40,7 @@ class Gatuf_Auth_ModelBackend {
      * Given an array with the authentication data, auth the user and return it.
      */
     public static function authenticate($auth_data) {
-        $password = $auth_data['password'];
+        $password = '';
         $login = $auth_data['login'];
         $user = self::getUser($login);
         if (!$user) {

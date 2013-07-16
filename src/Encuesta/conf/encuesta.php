@@ -109,6 +109,6 @@ $cfg['middleware_classes'] = array(
 	'Gatuf_Middleware_Session',
 );
 
-$cfg['gatuf_custom_user'] = 'Gatuf_User';
+$cfg['gatuf_custom_user'] = 'Encuesta_User';
 
 return $cfg;
