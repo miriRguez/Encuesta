@@ -66,7 +66,7 @@ class Gatuf_Form_Widget_RadioInput extends Gatuf_Form_Widget {
                                                'type' => 'radio'),
                                          $final_attrs);
             $rendered = new Gatuf_Template_SafeString('<input'.Gatuf_Form_Widget_Attrs($check_attrs).' />', true);
-            $output[] = sprintf('<li><label>%s %s</label></li>', $rendered,
+            $output[] = sprintf('<li>%s %s</li>', $rendered,
                                 htmlspecialchars($option_label, ENT_COMPAT, 'UTF-8'));
             $i++;
         }

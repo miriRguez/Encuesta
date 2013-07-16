@@ -28,10 +28,10 @@ class Encuesta_Views_Pregunta {
 		}
 		
 		$extra = array ('pregunta' => $esta_pregunta);
+		$tipo = new Encuesta_Tipo ();
+		$tipo->getTipo ($esta_pregunta->tipo);
 		if ($request->method == 'POST') {
-			if ($esta_pregunta->tipo == 1) {
-				$form = new Encuesta_Form_Pregunta_Radio ($request->POST, $extra);
-			}
+			$form = new $tipo->model ($request->POST, $extra);
 			
 			if ($form->isValid ()) {
 				$respuesta = $form->save ();
@@ -43,9 +43,7 @@ class Encuesta_Views_Pregunta {
 				return new Gatuf_HTTP_Response_Redirect ($url);
 			}
 		} else {
-			if ($esta_pregunta->tipo == 1) {
-				$form = new Encuesta_Form_Pregunta_Radio (null, $extra);
-			}
+			$form = new $tipo->model (null, $extra);
 		}
 		
 		return Gatuf_Shortcuts_RenderToResponse ('encuesta/pregunta/pregunta.html',

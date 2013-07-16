@@ -1,10 +1,14 @@
 <?php
 
+Gatuf::loadFunction('Gatuf_Shortcuts_RenderToResponse');
+Gatuf::loadFunction('Gatuf_HTTP_URL_urlForView');
+
 class Encuesta_Views {
 	public function index ($request, $match) {
 		if (!$request->user->isAnonymous ()) {
 			/* Redirigir a la vista de encuestas */
-			throw new Exception ('Redireccionar');
+			$url = Gatuf_HTTP_URL_urlForView ('Encuesta_Views_Cuestionario::index');
+			return new Gatuf_HTTP_Response_Redirect ($url);
 		}
 		
 		if (!empty($request->REQUEST['_redirect_after'])) {
